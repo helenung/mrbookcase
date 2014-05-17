@@ -1,0 +1,6 @@
+INDEX VERSION 1.126+C:\Users\Walter\Documents\Walter's Documents\android\helen\mrbookcase\.metadata\.plugins\org.eclipse.jdt.core
+1137387237.index
+3036623174.index
+1284074322.index
+77674788.index
+413798443.index
