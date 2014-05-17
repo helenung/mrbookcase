@@ -1,18 +1,22 @@
 package com.example.booksafe;
 
-public class Book {
+public class Book implements Comparable<Book>  {
 	private String title;
 	private String author;
 	private int year;
 	private String publisher;
 	private int rating;
 	
-	private Book(String title, String author, int year, String publisher, int rating) {
+	public Book(String title, String author, int year, String publisher, int rating) {
 		this.title = title;
 		this.author = author;
 		this.year = year;
 		this.publisher = publisher;
 		this.rating = rating;
+	}
+	
+	public int compareTo(Book other) {
+		return title.compareTo(other.title);
 	}
 	
 	public String getTitle() {
