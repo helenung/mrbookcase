@@ -13,6 +13,11 @@ public class BookShelf {
 		books.add(book);
 	}
 	
+	public Book getBook(int index) {
+		return books.get(index);
+	}
+
+	
 	public void sortByYear() {
 		
 	}
