@@ -16,25 +16,4 @@ public class BookShelf {
 	public Book getBook(int index) {
 		return books.get(index);
 	}
-
-	
-	public void sortByYear() {
-		
-	}
-	
-	public void sortByTitle() {
-		
-	}
-	
-	public void sortByAuthor() {
-		
-	}
-	
-	public void sortByPublisher() {
-		
-	}
-	
-	public void sortByRating() {
-		
-	}
 }

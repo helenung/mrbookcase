@@ -8,8 +8,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -49,6 +52,8 @@ public class MainActivity extends ActionBarActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        
+        
 
     }
 
@@ -145,6 +150,35 @@ public class MainActivity extends ActionBarActivity {
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
+        }
+        
+        
+    }
+    public void scan(View view) {
+    	Log.w("scan", "method runs");
+    	try{
+    		Intent intent = new Intent("com.google.zxing.client.android.SCAN");
+    	       intent.putExtra("SCAN_MODE", "PRODUCT_MODE");//for Qr code, its "QR_CODE_MODE" instead of "PRODUCT_MODE"
+    	       intent.putExtra("SAVE_HISTORY", false);//this stops saving ur barcode in barcode scanner app's history
+    	       startActivityForResult(intent, 0);
+    	} catch(Exception e){
+    		Uri marketUri = Uri.parse("market://details?id=com.google.zxing.client.android");
+    		Intent marketIntent = new Intent(Intent.ACTION_VIEW,marketUri);
+    		startActivity(marketIntent);
+    	}
+    	
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0) {
+            if (resultCode == RESULT_OK) {
+                    String contents = data.getStringExtra("SCAN_RESULT"); //this is the result
+                    Log.w("scan",contents);
+            } else 
+            if (resultCode == RESULT_CANCELED) {
+              // Handle cancel
+            }
         }
     }
 
